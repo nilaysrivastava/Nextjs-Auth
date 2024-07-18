@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,13 +40,13 @@ export default function LoginPage() {
   }, [user]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <div className="w-full flex-col items-center justify-center max-w-md p-8 space-y-8 rounded-lg shadow-md bg-[#1a1a1a]">
-        <h1 className="text-2xl font-bold text-center text-orange-700 pt-3">
+    <div className="flex flex-row items-center justify-evenly min-h-screen bg-black">
+      <div className="w-full flex-col items-center justify-center max-w-md p-8 space-y-8 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center text-blue-300 pt-3 pb-10">
           {loading ? "Processing..." : "Log into an existing account"}
         </h1>
-        <form className="space-y-6" onSubmit={onLogin}>
-          <div className="flex flex-col">
+        <form className="space-y-12" onSubmit={onLogin}>
+          <div className="flex flex-col ">
             <label htmlFor="email" className="text-sm font-medium text-white">
               Email
             </label>
@@ -54,7 +55,7 @@ export default function LoginPage() {
               name="email"
               type="email"
               required
-              className="px-3 py-2 mt-1 text-white bg-black border-2 border-orange-700 rounded focus:outline-none focus:ring focus:border-orange-700"
+              className="px-3 py-2 mt-1 text-white bg-black border-2 border-blue-500 rounded focus:outline-none focus:ring focus:border-blue-500"
               value={user.email}
               onChange={(e) => setUser({ ...user, email: e.target.value })}
               placeholder="Enter your Email"
@@ -72,16 +73,16 @@ export default function LoginPage() {
               name="password"
               type="password"
               required
-              className="px-3 py-2 mt-1 text-white bg-black border-2 border-orange-700 rounded focus:outline-none focus:ring focus:border-orange-700"
+              className="px-3 py-2 mt-1 text-white bg-black border-2 border-blue-500 rounded focus:outline-none focus:ring focus:border-blue-500"
               value={user.password}
               onChange={(e) => setUser({ ...user, password: e.target.value })}
               placeholder="Enter your Password"
             />
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center py-6">
             <button
               type="submit"
-              className="px-8 py-2 font-bold bg-black hover:bg-[#151515] text-orange-700 hover:text-orange-600 rounded-lg focus:outline-none focus:ring focus:border-orange-700 border-2 border-orange-700 hover:border-orange-600"
+              className="px-8 py-2 font-bold bg-black text-blue-100 hover:text-blue-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 border-2 border-blue-500 hover:border-blue-600"
               disabled={buttonDisabled}
             >
               {loading ? "Logging in..." : "Log in"}
@@ -92,11 +93,19 @@ export default function LoginPage() {
           Do not have an account? &nbsp;
           <Link
             href="/signup"
-            className="font-medium text-orange-700 hover:text-orange-600"
+            className="font-medium text-blue-300 hover:text-blue-500"
           >
             Signup
           </Link>
         </p>
+      </div>
+      <div className="w-full flex-col items-center justify-center max-w-md p-8 space-y-8 rounded-lg shadow-md">
+        <Image
+          src="/images/next11.png"
+          alt="My Image"
+          width={300}
+          height={300}
+        />
       </div>
     </div>
   );
